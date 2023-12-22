@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 
-export default function ScreenA({navigation}) {
+export default function ScreenA({navigation, route}) {
     const onPressHandler = () => {
       navigation.navigate('ScreenB', { ItemName: 'Item 1', ItemId: 15 });
     }
@@ -17,6 +17,7 @@ export default function ScreenA({navigation}) {
             Go to Screen B
           </Text>
         </Pressable>
+        <Text style = {styles.text}>{route.params?.Poruka}</Text>
       </View>
     );
     

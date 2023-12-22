@@ -6,7 +6,7 @@ export default function ScreenB({navigation, route}) {
   const { ItemName, ItemId } = route.params;
   
   const onPressHandler = () => {
-      navigation.goBack();
+      navigation.navigate("ScreenA", {Poruka: "Poruka sa ekrana B"});
     }
     return (
       <View style={styles.body}>
