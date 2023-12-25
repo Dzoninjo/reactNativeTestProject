@@ -10,9 +10,9 @@ const NikolaDugme = (props) => {
         <Pressable
         onPress={props.onPressFunction}
         hitSlop={{top:10, right:10, bottom:10, left:10,}}
-        android_ripple={{color : '#0000ff'}}
+        android_ripple={{color : '#01ff86'}}
         style = {({pressed}) => [
-            {backgroundColor : pressed ? '#ddd':'#00f0ff'},
+            {backgroundColor : pressed ? '#1eb900':'#1eb900'},
             styles.button
         ]}>
             <Text style = {styles.text}>
@@ -24,16 +24,17 @@ const NikolaDugme = (props) => {
 
 const styles = StyleSheet.create({
     text :{
-        color : '#000',
+        color : '#fff',
         fontSize : 20,
-        fontStyle : 'italic',
+        fontWeight:"bold",
         margin : 10,
         textAlign : 'center'
       },
       button : {
         width : 150,
         height : 50,
-        alignItems : 'center'
+        alignItems : 'center',
+        margin:10
       },
 
 })
