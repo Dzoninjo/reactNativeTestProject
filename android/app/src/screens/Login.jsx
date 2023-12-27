@@ -8,6 +8,8 @@ import { StyleSheet,
 import CustomButton from "../utils/CustomButton";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 import SQLite from 'react-native-sqlite-storage';
+import { useSelector, useDispatch } from "react-redux";
+import { setName, setAge } from "../redux/actions";
 
 const db = SQLite.openDatabase(
     {
@@ -20,8 +22,11 @@ const db = SQLite.openDatabase(
 
 export default function Login({navigation}){
 
-    const [name, setName] = useState('');
-    const [age, setAge] = useState('');
+    const {name, age} = useSelector(state => state.userReducer);
+    const dispatch = useDispatch();
+
+    // const [name, setName] = useState('');
+    // const [age, setAge] = useState('');
 
     useEffect(()=>{
         createTable();
@@ -59,6 +64,8 @@ const createTable = () =>{
         }
         else{
             try{
+                dispatch(setName(name));
+                dispatch(setAge(age));
                 // var user = {
                 //     Name:name,
                 //     Age:age
@@ -92,13 +99,13 @@ const createTable = () =>{
 
     return (
         <View style = {styles.body}>
-            <Text style = {styles.text}> Async storage</Text>
+            <Text style = {styles.text}>Redux</Text>
             <TextInput style = {styles.input}
             placeholder="Unesite ime"
-            onChangeText={(value) => setName(value)}></TextInput>
+            onChangeText={(value) => dispatch(setName(value))}></TextInput>
              <TextInput style = {styles.input}
             placeholder="Unesite godine"
-            onChangeText={(value) => setAge(value)}></TextInput>
+            onChangeText={(value) => dispatch(setAge(value))}></TextInput>
             <CustomButton 
             title = "Login"
             color = "#1eb900"
