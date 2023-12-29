@@ -3,6 +3,7 @@ import React from 'react';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from './android/app/src/screens/Home';
+import Camera from './android/app/src/screens/Camera';
 import Login from './android/app/src/screens/Login';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -34,6 +35,11 @@ function App() {
         />
         <Stack.Screen name="Login"
          component={Login}
+        options={{
+          headerShown:false,
+         }} />
+         <Stack.Screen name="Camera"
+         component={Camera}
         options={{
           headerShown:false,
          }} />

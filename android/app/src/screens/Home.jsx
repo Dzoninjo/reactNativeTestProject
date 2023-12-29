@@ -64,6 +64,10 @@ const removeData = async () => {
   
     return (
       <View style={styles.body}>
+          <CustomButton
+        title = "Otvori kameru"
+        onPressFunction = {() => {navigation.navigate('Camera')}}
+        />
         <Text style = {[
           GlobalStyle.CustomFont,
           styles.text]}>Welcome {name}</Text>
@@ -84,6 +88,7 @@ const removeData = async () => {
   
         onPressFunction = {removeData}
         />
+
       </View>
     );
     
