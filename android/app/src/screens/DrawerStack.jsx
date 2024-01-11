@@ -30,13 +30,7 @@ function MyModal({ isVisible, onClick }) {
 function HomeScreen({ navigation }) {
   const [showModal, setShowModal] = React.useState(false);
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <Button title="ADD" onPress={() => setShowModal(true)}></Button>
-      ),
-    });
-  }, [navigation]);
+ 
 
   return (
     <View style={styles.container}>

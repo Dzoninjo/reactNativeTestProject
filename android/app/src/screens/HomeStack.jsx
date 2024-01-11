@@ -6,12 +6,12 @@ import {
   StatusBar,
   FlatList,
   TouchableOpacity,
-  ScrollView,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DrawerScreenStack } from "./DrawerStack";
-import { Button } from "react-native-paper";
+import { Button,  } from "react-native-paper";
 
 function DetailScreen() {
   const navigation = useNavigation();
@@ -73,85 +73,190 @@ export function HomeScreenStack() {
         options={{ headerShown: false }}
       />
       <HomeStack.Screen name="Restorani" component={DetailScreen} />
-      <HomeStack.Screen name="Meni" component={RestaurantDetailsScreen} />
+      <HomeStack.Screen name="Meni" component={RestaurantDetailsScreen} options={{headerShown:false}} />
     </HomeStack.Navigator>
   );
 }
 
-function renderContent(id) {
-  const renderItem = ({ item }) => {
+function openDishAlert(id){
+  let quantity = 1;
+  return(
+    
+    Alert.alert(
+      `Unesite količinu za ${id}`,
+      null,
+      [
+        {
+          text: "Odustani",
+          style: "cancel",
+        },
+        {
+          text: "Potvrdi",
+          onPress: () => {
+         
+          },
+        },
+      ],
+      "plain-text",
+      quantity
+    )
+  )
+}
+
+function renderRestaurantMenu(id) {
+  const renderMenuItem = ({ item }) => {
     return (
       <TouchableOpacity
         style={styles.item}
-        onPress={() => navigateToRestaurant(item.id)}
+        onPress={() => openDishAlert(item.id)}
       >
+        <View style ={styles.itemContent}>
         <Text style={styles.itemText}>{item.title}</Text>
+        <Text style={styles.itemPrice}>{item.price}</Text>
+        </View>
+        <Text style={styles.itemDescription}>{item.description}</Text>
       </TouchableOpacity>
     );
   };
-
-  const data = [
-    { id: "1", title: "Jelo 1" },
-    { id: "2", title: "Jelo 2" },
-    { id: "3", title: "Jelo 3" },
-    { id: "4", title: "Jelo 4" },
-    { id: "5", title: "Jelo 5" },
-    { id: "6", title: "Jelo 6" },
-    { id: "7", title: "Jelo 7" },
-    { id: "8", title: "Jelo 8" },
-    { id: "9", title: "Jelo 9" },
-    { id: "10", title: "Jelo 10" },
+  
+  const data1 = [
+    { id: "1", title: "Becki obrok", description:"Pohovana piletina, pomfrit, tartar sos", price: "100 RSD" },
+    { id: "2", title: "Karadjordjeva", description:"Kackavalj, pomfrit, tartar sos, sunka", price: "200 RSD" },
+    { id: "3", title: "Tonno pizza", description:"Pelat, masline, pecurke, tunjevina, posni sir*", price: "300 RSD" },
+    { id: "4", title: "Italijanska salata", description:"Paradajz, origano, majonez, sunka, pecurke...", price: "100 RSD"},
+    { id: "5", title: "Bolognese spagete", description:"Bolonjeze sos, masline, parmezan", price: "1000 RSD"},
+    { id: "6", title: "Sumadijski sendvic", description:"Jaje, pavlaka, suvi vrat", price: "140 RSD" },
+    { id: "7", title: "Tortilja pizza", description:"Sunka, pelat, pecurke, kackavalj, origano", price: "220 RSD" },
+    { id: "8", title: "Grilovane pecurke", description:"Pecurke, pirinac", price: "100 RSD" },
+    { id: "9", title: "Cevapi", description:"10 cevapa, kajmak, luk", price: "700 RSD"},
+    { id: "10", title: "Pesto di pollo", description:"Gril piletina, pesto sos, neutralna pavlaka...", price: "750 RSD"},
   ];
+
+  const data2 = [
+    { id: "1", title: "Girice", description:"100g, somun", price: "100 RSD" },
+    { id: "2", title: "Musaka", description:"Krompir, junetina, kiselo mleko", price: "200 RSD" },
+    { id: "3", title: "Przenice", description:"Feta sir, paradajz", price: "300 RSD" },
+    { id: "4", title: "Pita sir", description:"Pita, jogurt", price: "100 RSD"},
+    { id: "5", title: "Punjena paprika", description:"Junetina,", price: "1000 RSD"},
+    { id: "6", title: "Baklava", description:"Orasi, suvo grozdje, kore", price: "140 RSD" },
+  ];
+
+  const data3 = [
+    { id: "1", title: "Lazanje", description:"Testenina, bolonjeze sos, parmezan", price: "100 RSD" },
+    { id: "2", title: "Kapricoza", description:"Sunka, pelat, kackavalj, sampinjoni", price: "200 RSD" },
+    { id: "3", title: "Burger", description:"Junetina, krastavcici, burger sos, zelena salata", price: "300 RSD" },
+    { id: "4", title: "Omlet", description:"Omlet od 3 jaja, slanina", price: "100 RSD"},
+    { id: "5", title: "Teleca corba", description:"Teletina, luk, kisela pavlaka", price: "1000 RSD"},
+    { id: "6", title: "Palacinka", description:"Nutela, plazma", price: "140 RSD" },
+  ];
+
+  const data4 = [
+    { id: "1", title: "Cezar salata", description:"Piletina, ajsberg, krutoni, sos", price: "100 RSD" },
+    { id: "2", title: "Mexicana", description:"Pelat, kackavalj, ljuta paprika, kulen", price: "200 RSD" },
+    { id: "3", title: "Uzicka lepinja", description:"Somun, kajmak, jaje, pretop", price: "300 RSD" },
+    { id: "4", title: "Susam pljeskavica", description:"Rostilj meso, susam, prilozi", price: "100 RSD"},
+    { id: "5", title: "Pasulj sa kobasicom", description:"Pasulj, kobasica, salata po izboru", price: "1000 RSD"},
+    { id: "6", title: "Tortilja", description:"Piletina, pomfrit, salata po izboru", price: "140 RSD" },
+  ];
+
+  const data5 = [
+    { id: "1", title: "Cezar salata", description:"Piletina, ajsberg, krutoni, sos", price: "100 RSD" },
+    { id: "2", title: "Mexicana", description:"Pelat, kackavalj, ljuta paprika, kulen", price: "200 RSD" },
+    { id: "3", title: "Uzicka lepinja", description:"Somun, kajmak, jaje, pretop", price: "300 RSD" },
+    { id: "4", title: "Susam pljeskavica", description:"Rostilj meso, susam, prilozi", price: "100 RSD"},
+    { id: "5", title: "Pasulj sa kobasicom", description:"Pasulj, kobasica, salata po izboru", price: "1000 RSD"},
+    { id: "6", title: "Tortilja", description:"Piletina, pomfrit, salata po izboru", price: "140 RSD" },
+    { id: "7", title: "Lenja pita", description:"Jabuke, cimet, slag", price: "140 RSD" },
+    { id: "8", title: "Pita sa makom", description:"Mak, posno*", price: "140 RSD" },
+    ];
   switch (id) {
     case "1":
       return (
-        <ScrollView>
+        <View>
           <FlatList
-            data={data}
-            style={{ marginTop: "20%" }}
-            renderItem={renderItem}
+            data={data1}
+            style={{ marginTop: "10%",marginBottom:"50%" }}
+            renderItem={renderMenuItem}
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.listContainer}
           />
-        </ScrollView>
+        </View>
       );
     case "2":
-      return <Text style={styles.itemText}>Restoran {id} Guzic</Text>;
+      return (
+        <View>
+          <FlatList
+            data={data2}
+            style={{ marginTop: "10%",marginBottom:"50%" }}
+            renderItem={renderMenuItem}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.listContainer}
+          />
+        </View>
+      );
     case "3":
-      return <Text style={styles.itemText}>Restoran {id}</Text>;
+      return (
+        <View>
+          <FlatList
+            data={data3}
+            style={{ marginTop: "10%",marginBottom:"50%" }}
+            renderItem={renderMenuItem}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.listContainer}
+          />
+        </View>
+      );
     case "4":
-      return <Text style={styles.itemText}>Restoran {id} test</Text>;
+      return (
+        <View>
+          <FlatList
+            data={data4}
+            style={{ marginTop: "10%",marginBottom:"50%" }}
+            renderItem={renderMenuItem}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.listContainer}
+          />
+        </View>
+      );
     case "5":
-      return <Text style={styles.itemText}>Restoran {id} proba</Text>;
+      return (
+        <View>
+          <FlatList
+            data={data5}
+            style={{ marginTop: "10%",marginBottom:"50%" }}
+            renderItem={renderMenuItem}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.listContainer}
+          />
+        </View>
+      );
     default:
   }
 }
 
 function RestaurantDetailsScreen({ route }) {
   const { restaurantId } = route.params;
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.itemText}>Restoran {restaurantId}</Text>
-      {renderContent(restaurantId)}
+      <Text style={styles.itemText}>Restoran {restaurantId}</Text>      
+      {renderRestaurantMenu(restaurantId)}
       <View style={styles.buttonsContainer}>
         <Button
           mode="contained"
           style={[styles.button, { backgroundColor: "white" }]}
           labelStyle={{ color: "red", fontSize: 16 }}
-        >
-          Odustani
-        </Button>
+          onPress={()=>navigation.navigate("Restorani")}>
+          Odustani</Button>
         <Button
           mode="contained"
           style={[
             styles.button,
             { backgroundColor: "#0080ff", borderColor: "black" },
           ]}
-          labelStyle={{ color: "white", fontSize: 16 }}
-        >
-          Nastavi
-        </Button>
+          labelStyle={{ color: "white", fontSize: 16 }}>
+          Nastavi</Button>
       </View>
     </View>
   );
@@ -172,8 +277,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ccc",
   },
   itemText: {
-    fontSize: 30,
+    fontSize: 24,
     textAlign: "center",
+    marginTop:"5%"
   },
   buttonsContainer: {
     flexDirection: "row",
@@ -190,6 +296,20 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 10,
   },
+  itemPrice: {
+    fontSize: 24,
+    color: "#888",
+    textAlign: "center",
+  },
+  itemDescription: {
+    fontSize: 18,
+    color: "#88888880",
+    textAlign: "left",
+  },
+  itemContent:{
+    flexDirection:"row",
+    justifyContent:"space-between"
+  }
 });
 
 export default DetailScreen;
