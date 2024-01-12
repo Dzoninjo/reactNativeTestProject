@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
 } from "react-native";
@@ -21,8 +21,8 @@ export function HomeScreenStack() {
         options={{ headerShown: false }}
       />
       <HomeStack.Screen name="Restorani" component={DetailScreen} />
-      <HomeStack.Screen name="Meni" component={RestaurantDetailsScreen} options={{headerShown:false}} />
-      <HomeStack.Screen name="Cart" component={CartScreen}/>
+      <HomeStack.Screen name="Meni" component={RestaurantDetailsScreen} options={{ headerShown: false }} />
+      <HomeStack.Screen name="Cart" component={CartScreen} />
     </HomeStack.Navigator>
   );
 }
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 24,
     textAlign: "center",
-    marginTop:"5%"
+    marginTop: "5%"
   },
   buttonsContainer: {
     flexDirection: "row",
@@ -71,17 +71,17 @@ const styles = StyleSheet.create({
     color: "#88888880",
     textAlign: "left",
   },
-  itemContent:{
-    flexDirection:"row",
-    justifyContent:"space-between",
+  itemContent: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  header:{
-    flexDirection:"row",
-    justifyContent:"space-between",
-    paddingLeft:"10%",
-    paddingRight:"5%",
-    paddingBottom:"5%",
-    backgroundColor:"#f1f1f1",
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: "10%",
+    paddingRight: "5%",
+    paddingBottom: "5%",
+    backgroundColor: "#f1f1f1",
   },
 });
 

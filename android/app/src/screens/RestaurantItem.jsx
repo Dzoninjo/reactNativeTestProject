@@ -1,10 +1,10 @@
-// import React, { useState } from "react";
+import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const RestaurantItem = ({ item }) => {
     const navigation = useNavigation();
-    
+
     const navigateToRestaurant = (id) => {
         navigation.navigate("Meni", { restaurantId: id });
     };
@@ -17,5 +17,6 @@ const RestaurantItem = ({ item }) => {
         </TouchableOpacity>
     );
 }
+
 
 export default RestaurantItem;

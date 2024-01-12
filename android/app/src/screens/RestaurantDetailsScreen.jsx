@@ -3,93 +3,32 @@ import {
     StyleSheet,
     Text,
     View,
-    StatusBar,
     FlatList,
     TouchableOpacity,
-    Alert,
-    Modal,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { DrawerScreenStack } from "./DrawerStack";
 import { Button, } from "react-native-paper";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
-import DishDetailScreen from "./DishItemScreen";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import DishItemScreen from "./DishItemScreen";
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-    },
-    listContainer: {
-        flexGrow: 1,
-        justifyContent: "center",
-    },
-    item: {
-        padding: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: "#ccc",
-    },
-    itemText: {
-        fontSize: 24,
-        textAlign: "center",
-        marginTop: "5%"
-    },
-    buttonsContainer: {
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "absolute",
-        bottom: 0,
-        width: "100%",
-        backgroundColor: "#f1f1f1",
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-    },
-    button: {
-        marginHorizontal: 10,
-        marginVertical: 10,
-    },
-    itemPrice: {
-        fontSize: 24,
-        color: "#888",
-        textAlign: "center",
-    },
-    itemDescription: {
-        fontSize: 18,
-        color: "#88888880",
-        textAlign: "left",
-    },
-    itemContent: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-    },
-    header: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        paddingLeft: "10%",
-        paddingRight: "5%",
-        paddingBottom: "5%",
-        backgroundColor: "#f1f1f1",
-    },
-});
 
 function RestaurantDetailsScreen({ route }) {
     const { restaurantId } = route.params;
     const navigation = useNavigation();
     const [isModalVisible, setModalVisible] = useState(false);
-    const [currentMenuItemId, setCurrentMenuItemId] = useState(null)
+    const [currentMenuItemId, setCurrentMenuItemId] = useState(null);
+    const [dishName, setDishName] = useState();
+    const [dishPrice, setDishPrice] = useState(0);
 
     const handleCloseModal = () => {
         setModalVisible(false)
     }
 
 
-
-    const openDishAlert = (id) => {
-        setModalVisible(true)
-        setCurrentMenuItemId(id)
+    const openDishAlert = (id, title, price) => {
+        setModalVisible(true);
+        setCurrentMenuItemId(id);
+        setDishName(title);
+        setDishPrice(price);
     }
 
     function renderRestaurantMenu(id) {
@@ -97,7 +36,7 @@ function RestaurantDetailsScreen({ route }) {
             return (
                 <TouchableOpacity
                     style={styles.item}
-                    onPress={() => openDishAlert(item.id)}
+                    onPress={() => openDishAlert(item.id, item.title, item.price)}
                 >
                     <View style={styles.itemContent}>
                         <Text style={styles.itemText}>{item.title}</Text>
@@ -239,25 +178,88 @@ function RestaurantDetailsScreen({ route }) {
                 <View style={styles.buttonsContainer}>
                     <Button
                         mode="contained"
-                        style={[styles.button, { backgroundColor: "white" }]}
-                        labelStyle={{ color: "red", fontSize: 16 }}
+                        style={[styles.button, { backgroundColor: "#ffffff" }]}
+                        labelStyle={{ color: "#ff0000", fontSize: 16 }}
                         onPress={() => navigation.navigate("Restorani")}>
                         Odustani</Button>
                     <Button
                         mode="contained"
                         style={[
                             styles.button,
-                            { backgroundColor: "#0080ff", borderColor: "black" },
+                            { backgroundColor: "#0080ff", borderColor: "#0080ff" },
                         ]}
                         labelStyle={{ color: "white", fontSize: 16 }}
                         onPress={() => navigation.navigate("Cart")}>
                         Nastavi</Button>
                 </View>
             </View>
-            <DishItemScreen modalOpen={isModalVisible} closeModal={handleCloseModal} currentId={currentMenuItemId} />
+            <DishItemScreen
+                modalOpen={isModalVisible}
+                closeModal={handleCloseModal}
+                currentId={currentMenuItemId}
+                dishName={dishName}
+                dishPrice={dishPrice} />
         </>
 
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
+    listContainer: {
+        flexGrow: 1,
+        justifyContent: "center",
+    },
+    item: {
+        padding: 20,
+        borderBottomWidth: 1,
+        borderBottomColor: "#ccc",
+    },
+    itemText: {
+        fontSize: 24,
+        textAlign: "center",
+        marginTop: "5%"
+    },
+    buttonsContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        bottom: 0,
+        width: "100%",
+        backgroundColor: "#f1f1f1",
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+    },
+    button: {
+        marginHorizontal: 10,
+        marginVertical: 10,
+    },
+    itemPrice: {
+        fontSize: 24,
+        color: "#888",
+        textAlign: "center",
+    },
+    itemDescription: {
+        fontSize: 18,
+        color: "#88888880",
+        textAlign: "left",
+    },
+    itemContent: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingLeft: "10%",
+        paddingRight: "5%",
+        paddingBottom: "5%",
+        backgroundColor: "#f1f1f1",
+    },
+});
 
 export default RestaurantDetailsScreen;
