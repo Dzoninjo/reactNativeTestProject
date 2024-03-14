@@ -4,9 +4,9 @@ import {
 } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DrawerScreenStack } from "./DrawerStack";
-import DetailScreen from "./DetailScreen";
-import RestaurantDetailsScreen from "./RestaurantDetailsScreen";
-import CartScreen from "./CartScreen";
+import DetailScreen from "./restaurant/RestaurantSelectionScreen";
+import RestaurantDetailsScreen from "./restaurant/RestaurantDetailsScreen";
+import CartScreen from "./restaurant/CartScreen";
 
 
 
@@ -22,7 +22,7 @@ export function HomeScreenStack() {
       />
       <HomeStack.Screen name="Restorani" component={DetailScreen} />
       <HomeStack.Screen name="Meni" component={RestaurantDetailsScreen} options={{ headerShown: false }} />
-      <HomeStack.Screen name="Cart" component={CartScreen} />
+      <HomeStack.Screen name="Korpa" component={CartScreen} />
     </HomeStack.Navigator>
   );
 }

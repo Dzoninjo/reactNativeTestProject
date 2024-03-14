@@ -10,6 +10,52 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 
+function DetailScreen() {
+    const navigation = useNavigation();
+
+    const data = [
+        { id: "1", title: "Restoran 1" },
+        { id: "2", title: "Restoran 2" },
+        { id: "3", title: "Restoran 3" },
+        { id: "4", title: "Restoran 4" },
+        { id: "5", title: "Restoran 5" },
+    ];
+
+    const navigateToRestaurant = (id) => {
+        navigation.navigate("Meni", { restaurantId: id });
+    };
+
+    const renderItem = ({ item }) => {
+        return (
+            <TouchableOpacity
+                style={styles.item}
+                onPress={() => navigateToRestaurant(item.id)}
+            >
+                <Text style={styles.itemText}>{item.title}</Text>
+            </TouchableOpacity>
+        );
+    };
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.text}>
+                Izaberite restoran
+            </Text>
+            <FlatList
+                data={data}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={styles.listContainer}
+            />
+            <StatusBar style="auto" />
+        </View>
+    );
+}
+
+export default DetailScreen
+
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -66,57 +112,11 @@ const styles = StyleSheet.create({
         paddingBottom: "5%",
         backgroundColor: "#f1f1f1",
     },
+    text: {
+        textAlign: "center",
+        fontSize: 20,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "20%",
+    }
 });
-
-
-function DetailScreen() {
-    const navigation = useNavigation();
-
-    const data = [
-        { id: "1", title: "Restoran 1" },
-        { id: "2", title: "Restoran 2" },
-        { id: "3", title: "Restoran 3" },
-        { id: "4", title: "Restoran 4" },
-        { id: "5", title: "Restoran 5" },
-    ];
-
-    const navigateToRestaurant = (id) => {
-        navigation.navigate("Meni", { restaurantId: id });
-    };
-
-    const renderItem = ({ item }) => {
-        return (
-            <TouchableOpacity
-                style={styles.item}
-                onPress={() => navigateToRestaurant(item.id)}
-            >
-                <Text style={styles.itemText}>{item.title}</Text>
-            </TouchableOpacity>
-        );
-    };
-
-    return (
-        <View style={styles.container}>
-            <Text
-                style={{
-                    textAlign: "center",
-                    fontSize: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginTop: "20%",
-                }}
-            >
-                Izaberite restoran
-            </Text>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-                contentContainerStyle={styles.listContainer}
-            />
-            <StatusBar style="auto" />
-        </View>
-    );
-}
-
-export default DetailScreen

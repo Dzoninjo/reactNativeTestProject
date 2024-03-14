@@ -1,7 +1,10 @@
 import React from "react";
 import { View, Modal, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function DishItemScreen({ modalOpen, closeModal, currentId, dishName, dishPrice }) {
+export default function DishItemScreen(dishDetails) {
+
+    const { modalOpen, closeModal, currentId, dishName, dishPrice } = dishDetails;
+
     const handleClose = () => {
         closeModal();
     };
@@ -15,20 +18,17 @@ export default function DishItemScreen({ modalOpen, closeModal, currentId, dishN
             <View style={styles.modalContainer}>
                 <View style={styles.modalContent}>
                     <Text>{dishName}</Text>
-                    <Text>{currentId}</Text>
                     <Text>{dishPrice}</Text>
                     <TouchableOpacity title="Odustani"
                         mode="contained"
-                        style={[styles.button, { backgroundColor: "#ffffff" }]}
+                        style={styles.buttonClose}
                         onPress={handleClose}>
                         <Text style={{ color: '#ff0000' }}>Odustani</Text>
                     </TouchableOpacity>
                     <TouchableOpacity title="Dodaj u korpu"
                         mode="contained"
-                        style={[
-                            styles.button,
-                            { backgroundColor: "#0080ff", borderColor: "#0080ff" },
-                        ]}
+                        style={
+                            styles.buttonContinue}
                         onPress={handleClose}>
                         <Text style={{ color: "#ffffff" }}>Dodaj u korpu</Text>
                     </TouchableOpacity>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    button:
+    buttonClose:
     {
         marginHorizontal: 10,
         marginVertical: 10,
@@ -61,6 +61,20 @@ const styles = StyleSheet.create({
         width: 100,
         height: 30,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: "#ffffff",
+    },
+
+    buttonContinue:
+    {
+        marginHorizontal: 10,
+        marginVertical: 10,
+        borderRadius: 10,
+        width: 100,
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: "#0080ff",
+        borderColor: "#0080ff"
     },
 });

@@ -3,7 +3,7 @@ import { View, Text, StatusBar, StyleSheet} from 'react-native';
 export default function ProfileScreen() {
     return (
         <View style={styles.container}>
-            <Text>This is the ProfileScreen page</Text>
+            <Text>Profilna stranica</Text>
             <StatusBar style="auto" />
         </View>
     );

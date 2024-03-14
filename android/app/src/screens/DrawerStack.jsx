@@ -54,11 +54,11 @@ function CustomDrawerContent(props, { navigation }) {
 const DrawerStack = createDrawerNavigator();
 export function DrawerScreenStack() {
   return (
-    <DrawerStack.Navigator initialRouteName="Home"
+    <DrawerStack.Navigator initialRouteName="Pocetna"
       drawerContent={(props) => <CustomDrawerContent {...props} />}>
-      <DrawerStack.Screen name="Home" component={HomeScreen} />
-      <DrawerStack.Screen name="Profile" component={ProfileScreen} />
-      <DrawerStack.Screen name="Help" component={HelpScreen} />
+      <DrawerStack.Screen name="Pocetna" component={HomeScreen} />
+      <DrawerStack.Screen name="Profil" component={ProfileScreen} />
+      <DrawerStack.Screen name="Pomoc" component={HelpScreen} />
     </DrawerStack.Navigator>
   );
 }

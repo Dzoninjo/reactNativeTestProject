@@ -3,7 +3,7 @@ import { View, Text, StatusBar, StyleSheet } from "react-native";
 export default function HelpScreen() {
     return (
         <View style={styles.container}>
-            <Text>This is the HelpScreen page</Text>
+            <Text>Pomoc</Text>
             <StatusBar style="auto" />
         </View>
     );

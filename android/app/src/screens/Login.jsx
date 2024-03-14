@@ -17,7 +17,7 @@ export default function Login({ navigation }) {
     } else {
       try {
         await AsyncStorage.setItem("UserName", name);
-        navigation.navigate("Home");
+        navigation.navigate("Pocetna");
       } catch (error) {
         console.log(error);
       }

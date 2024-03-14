@@ -19,6 +19,7 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "@react-navigation/stack": "^6.3.20",
+    "@reduxjs/toolkit": "^2.2.1",
     "metro-react-native-babel-preset": "^0.77.0",
     "react": "18.2.0",
     "react-native": "0.73.1",
@@ -30,7 +31,8 @@
     "react-native-screens": "^3.29.0",
     "react-native-sqlite-storage": "^6.0.1",
     "react-native-tab-view": "^3.5.2",
-    "react-native-vector-icons": "^10.0.3"
+    "react-native-vector-icons": "^10.0.3",
+    "react-redux": "^9.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
