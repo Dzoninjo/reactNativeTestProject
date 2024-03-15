@@ -48,7 +48,7 @@ function RestaurantDetailsScreen({ route }) {
                     <Button
                         mode="contained"
                         style={styles.buttonClose}
-                        labelStyle={{ color: "#ff0000", fontSize: 16 }}
+                        labelStyle={styles.label}
                         onPress={() => navigation.navigate("Restorani")}>
                         Odustani
                     </Button>
@@ -137,6 +137,10 @@ const styles = StyleSheet.create({
         paddingBottom: "5%",
         backgroundColor: "#f1f1f1",
     },
+    label: {
+        color: "#ff0000",
+        fontSize: 16
+    }
 });
 
 export default RestaurantDetailsScreen;

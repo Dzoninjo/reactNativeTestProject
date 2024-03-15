@@ -9,5 +9,11 @@ export default StyleSheet.create({
         fontSize : 25,
         padding : 10,
 
-    }
+    },
+    buttonCloseTextColor:{
+        color:"#ff0000"
+    },
+    buttonContinueTextColor:{
+        color:"#fff",
+    },
 })

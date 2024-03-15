@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Modal, Text, TouchableOpacity, StyleSheet } from "react-native";
+import GlobalStyle from "../../utils/GlobalStyle";
 
 export default function DishItemScreen(dishDetails) {
 
@@ -23,14 +24,14 @@ export default function DishItemScreen(dishDetails) {
                         mode="contained"
                         style={styles.buttonClose}
                         onPress={handleClose}>
-                        <Text style={{ color: '#ff0000' }}>Odustani</Text>
+                        <Text style={GlobalStyle.buttonCloseTextColor}>Odustani</Text>
                     </TouchableOpacity>
                     <TouchableOpacity title="Dodaj u korpu"
                         mode="contained"
                         style={
                             styles.buttonContinue}
                         onPress={handleClose}>
-                        <Text style={{ color: "#ffffff" }}>Dodaj u korpu</Text>
+                        <Text style={GlobalStyle.buttonContinueTextColor}>Dodaj u korpu</Text>
                     </TouchableOpacity>
                 </View>
             </View>
